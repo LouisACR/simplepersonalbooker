@@ -9,8 +9,15 @@
 <body>
     <div class="container">
         <div class="box">
-            <h1>Simple Personal Booker</h1>
-            <p>A simple way to book a meeting.</p>
+            <div class="box-header"></div>
+            <div class="row">
+                <div class="col-8-center">
+                    <h1>You have been invited.</h1>
+                </div>
+                <div class="col-12">
+                    <p>A simple way to book a meeting with your friends or colleagues.</p>
+                </div>
+            </div>
         </div>
     </div>
 </body>
