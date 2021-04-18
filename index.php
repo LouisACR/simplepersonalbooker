@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik">
     <link href="css/style.css" rel="stylesheet">
 </head>
-
 <body>
     <div class="container">
         <div class="box">

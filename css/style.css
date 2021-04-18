@@ -12,7 +12,7 @@ body {
 }
 
 .box {
-    margin-top: 8%;
+    margin-top: 5%;
     backface-visibility: hidden;
     perspective: 1000;
     padding-left: 20px;
