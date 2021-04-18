@@ -1,0 +1,78 @@
+body {
+    font-family: 'Rubik';
+    background-image: url("blob.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    background-color: white;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+    .box {
+        height: 600px;
+        width: 90%;
+    }
+
+    .box h1 {
+        font-size: 3rem;
+    }
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .box {
+        height: 600px;
+        width: 80%;
+    }
+
+    .box h1 {
+        font-size: 3rem;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .box {
+        height: 600px;
+        width: 75%;
+    }
+
+    .box h1 {
+        font-size: 3rem;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .box {
+        height: 600px;
+        width: 60%;
+    }
+
+    .box h1 {
+        font-size: 3rem;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .box {
+        height: 600px;
+        width: 500px;
+    }
+
+    .box h1 {
+        font-size: 3rem;
+    }
+}
