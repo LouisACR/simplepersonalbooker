@@ -10,4 +10,4 @@ Just a simple web page to allow your friends/colleagues or clients to book a tim
 
 ## Credits
 
-* [dayjs by iamkun](/iamkun/dayjs)
+* [dayjs by iamkun](https://github.com/iamkun/dayjs)
