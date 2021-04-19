@@ -1,6 +1,6 @@
 body {
     font-family: 'Rubik';
-    background-image: url("blob.svg");
+    background-image: url("blob-blue.svg");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -19,22 +19,22 @@ body {
     padding-right: 20px;
     background-color: white;
     border-radius: 15px;
-    box-shadow: -10px 10px 30px rgba(255, 0, 102, .3);
+    box-shadow: -10px 10px 30px rgba(59, 142, 250, .3);
     animation: float 6s ease-in-out infinite;
     background-color: #fefffe;
 }
 
 @keyframes float {
     0% {
-        box-shadow: -10px 10px 30px rgba(255, 0, 102, .3);
+        box-shadow: -10px 10px 30px rgba(59, 142, 250, .3);
     }
 
     50% {
-        box-shadow: -10px 15px 30px rgba(255, 0, 102, .1);
+        box-shadow: -10px 15px 30px rgba(59, 142, 250, .1);
     }
 
     100% {
-        box-shadow: -10px 10px 30px rgba(255, 0, 102, .3);
+        box-shadow: -10px 10px 30px rgba(59, 142, 250, .3);
     }
 }
 
@@ -55,8 +55,8 @@ body {
 .box-header {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    background: rgb(131, 58, 180);
-    background: linear-gradient(30deg, rgba(131, 58, 180, 1) 0%, rgba(255, 0, 102, 1) 50%, rgba(252, 176, 69, 1) 100%);
+    background: rgb(59, 142, 250);
+    background: linear-gradient(30deg, rgb(59, 142, 250) 0%, rgb(85, 47, 255) 50%, rgb(45, 160, 255) 100%);
     background-size: 200%;
     left: 0;
     margin-left: -20px;
@@ -90,7 +90,12 @@ body {
 
     .box {
         height: 1000px;
+        margin-top: 10%;
         width: 90%;
+    }
+
+    .box-header {
+        height: 400px;
     }
 
     .box h1 {
@@ -102,8 +107,13 @@ body {
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
     .box {
-        height: 1000px;
+        margin-top: 12%;
+        height: 1200px;
         width: 85%;
+    }
+
+    .box-header {
+        height: 400px;
     }
 
     .box h1 {
@@ -114,8 +124,13 @@ body {
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     .box {
-        height: 1000px;
+        height: 1200px;
         width: 85%;
+        margin-top: 5%;
+    }
+
+    .box-header {
+        height: 400px;
     }
 
     .box h1 {
@@ -128,6 +143,11 @@ body {
     .box {
         height: 1000px;
         width: 60%;
+        margin-top: 5%;
+    }
+
+    .box-header {
+        height: 200px;
     }
 
     .box h1 {
@@ -140,6 +160,11 @@ body {
     .box {
         height: 600px;
         width: 500px;
+        margin-top: 5%;
+    }
+
+    .box-header {
+        height: 200px;
     }
 
     .box h1 {
