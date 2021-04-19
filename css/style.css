@@ -1,27 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap');
+
 body {
-    font-family: 'Rubik';
+    font-family: 'Rubik', sans-serif;
     background-image: url("blob-blue.svg");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center
-}
-
-.box {
-    margin-top: 5%;
-    backface-visibility: hidden;
-    perspective: 1000;
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: -10px 10px 30px rgba(59, 142, 250, .3);
-    animation: float 6s ease-in-out infinite;
-    background-color: #fefffe;
+p {
+    color: #888888;
+    font-weight: 100;
+    text-align: center;
 }
 
 @keyframes float {
@@ -40,36 +29,96 @@ body {
 
 @keyframes gradient {
     0% {
-        background-position:0% 50%;
+        background-position: 0% 50%;
     }
 
     50% {
-        background-position:100% 50%;
+        background-position: 100% 50%;
     }
 
     100% {
-        background-position:0% 50%;
+        background-position: 0% 50%;
     }
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+/* BOX START */
+
+.box {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    backface-visibility: hidden;
+    perspective: 1000;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: -10px 10px 30px rgba(59, 142, 250, .3);
+    animation: float 6s ease-in-out infinite;
+    background-color: #fefffe;
+}
+
+
+.box h1 {
+    margin-top: 30px;
+    text-align: center;
+    font-weight: regular;
+}
+
 .box-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     background: rgb(59, 142, 250);
     background: linear-gradient(30deg, rgb(59, 142, 250) 0%, rgb(85, 47, 255) 50%, rgb(45, 160, 255) 100%);
     background-size: 200%;
-    left: 0;
-    margin-left: -20px;
-    padding-left: 40px;
-    width: 100%;
-    height: 200px;
+    width: auto;
+    height: 220px;
     animation: gradient 20s ease infinite;
 }
+
+.box-content {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* BOX END */
+
+/* AVATAR START*/
+
+.avatar {
+    padding: 25px;
+}
+
+.avatar img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: cover;
+    border-radius: 50%;
+    width: 125px;
+    height: 125px;
+    box-shadow: -5px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.avatar h2 {
+    color: white;
+}
+
+/* AVATAR END */
+
+/* GRID START */
 
 .row {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-gap: 10px;
+    grid-gap: 5px;
 }
 
 .col-6 {
@@ -85,89 +134,57 @@ body {
     grid-column: span 12;
 }
 
-/* Extra small devices (phones, 600px and down) */
+/* GRID END
+
+MEDIA QUERIES START 
+
+Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 
     .box {
-        height: 1000px;
-        margin-top: 10%;
+        height: 800px;
         width: 90%;
-    }
-
-    .box-header {
-        height: 400px;
-    }
-
-    .box h1 {
-        font-size: 3rem;
     }
 
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
+
     .box {
-        margin-top: 12%;
-        height: 1200px;
-        width: 85%;
+        height: 800px;
+        width: 90%;
     }
 
-    .box-header {
-        height: 400px;
-    }
-
-    .box h1 {
-        font-size: 3rem;
-    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+
     .box {
-        height: 1200px;
+        height: 800px;
         width: 85%;
-        margin-top: 5%;
     }
 
-    .box-header {
-        height: 400px;
-    }
-
-    .box h1 {
-        font-size: 3.2em;
-    }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+
     .box {
-        height: 1000px;
+        height: 800px;
         width: 60%;
-        margin-top: 5%;
     }
 
-    .box-header {
-        height: 200px;
-    }
-
-    .box h1 {
-        font-size: 35px;
-    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
+
     .box {
         height: 600px;
-        width: 500px;
-        margin-top: 5%;
+        width: 550px;
     }
 
-    .box-header {
-        height: 200px;
-    }
-
-    .box h1 {
-        font-size: 30px;
-    }
 }
+
+/* MEDIA QUERIES END */
