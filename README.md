@@ -8,6 +8,6 @@ Just a simple web page to allow your friends/colleagues or clients to book a tim
 * Install and configuration page
 * Only needs SQL server.
 
-## Why make this ?
+## Credits
 
-Why not ?
+* [dayjs by iamkun](/iamkun/dayjs)
