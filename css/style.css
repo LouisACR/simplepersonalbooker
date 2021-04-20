@@ -64,6 +64,7 @@ p {
 
 .box h1 {
     margin-top: 30px;
+    margin-bottom: -10px;
     text-align: center;
     font-weight: regular;
 }
@@ -118,7 +119,7 @@ p {
 .row {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-gap: 5px;
+    grid-gap: 10px;
 }
 
 .col-6 {
@@ -135,6 +136,33 @@ p {
 }
 
 /* GRID END
+
+START CALENDAR */
+
+.calendar {
+    grid-column: span 12;
+}
+
+.calendar .title {
+    margin-top: -10px;
+    margin-left: 3%;
+    font-size: 20px;
+    grid-column: span 7;
+}
+
+.calendar .daytags {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 5px;
+}
+
+.calendar .daytags span {
+    text-align: center;
+    grid-column: span 1;
+    color: rgb(163, 163, 163);
+}
+
+/* END CALENDAR
 
 MEDIA QUERIES START 
 
@@ -172,7 +200,7 @@ Extra small devices (phones, 600px and down) */
 
     .box {
         height: 800px;
-        width: 60%;
+        width: 550px;
     }
 
 }

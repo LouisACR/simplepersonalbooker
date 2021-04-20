@@ -8,7 +8,8 @@
 
 <body>
     <div class="container">
-        <div class="box"> <!-- Box START -->
+        <div class="box">
+            <!-- Box START -->
             <div class="box-header">
                 <div class="avatar">
                     <img src="https://feedback.upvoty.com/images/avatar/39263/04f7f73267502fa37faa/">
@@ -23,6 +24,18 @@
                     <div class="col-12">
                         <p>A simple way to book a meeting with your friends or colleagues.</p>
                     </div>
+                    <div class="calendar">
+                        <h3 class="title">April 2020</h3>
+                        <div class="daytags">
+                            <span>Mon</span>
+                            <span>Tue</span>
+                            <span>Wed</span>
+                            <span>Thu</span>
+                            <span>Fri</span>
+                            <span>Sat</span>
+                            <span>Sun</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div> <!-- Box END -->
@@ -30,4 +43,5 @@
 </body>
 <script src="js/dayjs.min.js"></script>
 <script src="js/main.js"></script>
+
 </html>
