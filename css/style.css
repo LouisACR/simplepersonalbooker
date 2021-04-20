@@ -79,7 +79,7 @@ p {
     background: url(check.svg);
     background-position: 97% center;
     background-color: rgb(241, 241, 241);
-    background-size: 20px;
+    background-size: 15px;
     background-repeat: no-repeat;
     border: 1px solid rgba(59, 142, 250, 1);
 }
@@ -88,7 +88,7 @@ p {
     background: url(cross.svg);
     background-position: 97% center;
     background-color: rgb(241, 241, 241);
-    background-size: 20px;
+    background-size: 15px;
     background-repeat: no-repeat;
     border: 1px solid rgb(250, 59, 59);
 }
@@ -263,7 +263,7 @@ form {
 START CALENDAR */
 
 .calendar {
-    transition: all 2s linear;
+    transition: all 0.5s linear;
     grid-column: span 12;
     font-family: 'Rubik', sans-serif;
     margin-bottom: 15px;
@@ -323,8 +323,24 @@ START CALENDAR */
 
 MEDIA QUERIES START 
 
-Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+
+Extra extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 400px) {
+
+    .box {
+        min-height: 600px;
+        width: 98%;
+    }
+
+    .calendar {
+        grid-column: span 12;
+        width: 300px;
+    }
+
+}
+
+/* Extra small */
+@media only screen and (min-width: 400px) {
 
     .box {
         min-height: 600px;
@@ -332,7 +348,22 @@ Extra small devices (phones, 600px and down) */
     }
 
     .calendar {
-        grid-column: span 12;
+        grid-column: 2 / 8;
+        width: 300px;
+    }
+
+}
+
+/* Extra small */
+@media only screen and (min-width: 500px) {
+
+    .box {
+        min-height: 600px;
+        width: 95%;
+    }
+
+    .calendar {
+        grid-column: 3 / 8;
         width: 300px;
     }
 
