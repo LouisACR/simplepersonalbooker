@@ -54,6 +54,11 @@ p {
     align-items: center;
 }
 
+.pick {
+    margin-top: -5px;
+    margin-bottom: 0px;
+}
+
 /* FORM START */
 
 .big-input {
@@ -64,23 +69,75 @@ p {
     margin-bottom: 10px;
     border: 0;
     border-radius: 15px;
-    background-color:rgb(241, 241, 241);
+    background-color: rgb(241, 241, 241);
     font-family: inherit;
     font-size: 14px;
-    color:rgb(141, 141, 141)
+    color: rgb(141, 141, 141);
 }
 
-.pick {
-    margin-top: -5px;
-    margin-bottom: 0px;
+.big-input:valid {
+    background: url(check.svg);
+    background-position: 97% center;
+    background-color: rgb(241, 241, 241);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    border: 1px solid rgba(59, 142, 250, 1);
 }
+
+.big-input:invalid {
+    background: url(cross.svg);
+    background-position: 97% center;
+    background-color: rgb(241, 241, 241);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    border: 1px solid rgb(250, 59, 59);
+}
+
+.big-input:not(focus):placeholder-shown {
+    background: none;
+    background-color: rgb(241, 241, 241);
+    border: 0;
+}
+
 
 .big-input:focus {
-    border: 0;
+    caret-color: rgba(59, 142, 250, 1);
 }
 
 ::placeholder {
     color: rgb(177, 177, 177)
+}
+
+form {
+    width: 100%;
+}
+
+.btn {
+    text-align: center;
+    display: block;
+    color: white;
+    background: rgb(59, 142, 250);
+    background: linear-gradient(30deg, rgb(59, 142, 250) 0%, rgb(85, 47, 255) 50%, rgb(72, 172, 255) 100%);
+    background-size: 250%;
+    padding: 13px 28px;
+    width: 100%;
+    border-radius: 15px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    animation: gradient 14s ease infinite;
+}
+
+.btn:hover {
+    background-color: rgb(74, 151, 251);
+}
+
+.btn:active {
+    background-color: rgb(29, 127, 255);
 }
 
 /* BOX START */
@@ -95,6 +152,7 @@ p {
     box-shadow: -10px 10px 30px rgba(59, 142, 250, .3);
     animation: float 6s ease-in-out infinite;
     background-color: #fefffe;
+    min-width: 350px;
 }
 
 
@@ -134,6 +192,20 @@ p {
 }
 
 /* BOX END */
+
+/* MEETING START */
+
+.meeting {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 5px;
+    border-radius: 15px;
+    grid-column: span 12;
+    box-shadow: 5px 5px 30px rgba(180, 180, 180, 0.3);
+    background-color: #fefffe;
+}
+
+/* MEETING END */
 
 /* AVATAR START*/
 
@@ -187,15 +259,18 @@ p {
 
 /* GRID END
 
+
 START CALENDAR */
 
 .calendar {
+    transition: all 2s linear;
     grid-column: span 12;
     font-family: 'Rubik', sans-serif;
+    margin-bottom: 15px;
 }
 
 .calendar .title {
-    margin-top: -10px;
+    margin-top: 5px;
     font-size: 20px;
     grid-column: span 2 / 6;
     color: rgb(59, 142, 250);
@@ -252,7 +327,7 @@ Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 
     .box {
-        height: 800px;
+        min-height: 600px;
         width: 95%;
     }
 
@@ -266,7 +341,7 @@ Extra small devices (phones, 600px and down) */
 @media only screen and (min-width: 600px) {
 
     .box {
-        height: 750px;
+        min-height: 600px;
         width: 450px;
     }
 
@@ -281,7 +356,7 @@ Extra small devices (phones, 600px and down) */
 @media only screen and (min-width: 768px) {
 
     .box {
-        height: 750px;
+        min-height: 600px;
         width: 450px;
     }
 
@@ -296,7 +371,8 @@ Extra small devices (phones, 600px and down) */
 @media only screen and (min-width: 992px) {
 
     .box {
-        height: 750px;
+        margin-top: 5%;
+        min-height: 600px;
         width: 450px;
     }
 
@@ -311,7 +387,8 @@ Extra small devices (phones, 600px and down) */
 @media only screen and (min-width: 1200px) {
 
     .box {
-        height: 750px;
+        margin-top: 5%;
+        min-height: 600px;
         width: 450px;
     }
 

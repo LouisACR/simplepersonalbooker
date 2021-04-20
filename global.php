@@ -8,7 +8,7 @@
 
 <body>
     <div class="container">
-        <div class="box">
+        <div id="box" class="box">
             <!-- Box START -->
             <div class="box-header">
                 <div class="avatar">
@@ -18,23 +18,22 @@
             </div>
             <div class="box-content">
                 <div class="row">
-                    <div class="col-12">
-                        <h1>Book your meeting now.</h1>
-                    </div>
-                    <div class="col-12">
-                        <p>You can book a date to join <b>John A. SMITH</b> in a meeting: <br><b class="text-blue">Business Virtual Classroom</b>.
-                        <br> Please select a slot to confirm this meeting.</p>
+                    <div class="meeting">
+                        <h1>Business Virtual Classroom</h1>
+                        <p>30 minute meeting by John A. SMITH</p>
                     </div>
                     <div class="col-12">
                         <h2 class="small-title">Book your slot now</h2>
                     </div>
                     <div class="col-12">
-                        <p class="pick">Please enter your email and choose a date and time.</p>
+                        <p id="help" class="pick">Please enter your full name and email.</p>
                     </div>
-                    <div class="col-10-center">
-                        <input type="email" class="big-input" placeholder="Please enter your email">
-                    </div>
-                    <div class="calendar">
+                    <form class="col-10-center" id="iden" method="POST">
+                        <input required type="text" class="big-input" placeholder="Please enter your full name">
+                        <input required type="email" class="big-input" placeholder="Please enter your email">
+                        <button type="submit" class="btn">Next</button>
+                    </form>
+                    <div id="calendar" class="calendar" style="display:none">
                         <h3 class="title">April 2021</h3>
                         <div class="daytags">
                             <span>Mon</span>
@@ -80,6 +79,9 @@
                             <a href="javascript:void(0);">29</a>
                             <a href="javascript:void(0);">30</a>
                         </div>
+                    </div>
+                    <div style="display:none;margin-bottom:10px" id="nextCalen" class="col-10-center">
+                        <button onclick="nextCalendar()" class="btn" disabled>Next</button>
                     </div>
                 </div>
             </div>
