@@ -4,9 +4,8 @@ Just a simple web page to allow your friends/colleagues or clients to book a tim
 
 ## Features
 
-* Responsive simple and light-weight code (no bootstrap)
-* Install and configuration page
-* Only needs SQL server.
+* Responsive and simple (no bootstrap)
+* Uses Laravel
 
 ## Credits
 
