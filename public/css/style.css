@@ -112,6 +112,12 @@ form {
     width: 100%;
 }
 
+.arrow-btn {
+    text-decoration: none;
+    color: #4276FB;
+    margin-right: 10px
+}
+
 .btn {
     text-align: center;
     display: block;
@@ -321,7 +327,7 @@ START CALENDAR */
 
 /* END CALENDAR
 
-MEDIA QUERIES START 
+MEDIA QUERIES START
 
 
 Extra extra small devices (phones, 600px and down) */

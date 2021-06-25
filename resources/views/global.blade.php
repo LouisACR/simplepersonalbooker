@@ -35,7 +35,7 @@
                         <button type="submit" class="btn">Next</button>
                     </form>
                     <div id="calendar" class="calendar" style="display:none">
-                        <h3 id="calendarTitle" class="title">NaN 2021</h3>
+                        <h3 id="calendarTitle" class="title">NaN 2021<span style="float:right;"><a id="btn-before" class="arrow-btn" href="javascript:void();">&lt;</a><a id="btn-after" class="arrow-btn" href="javascript:void();">&gt;</a></span></h3>
                         <div class="daytags">
                             <span>Mon</span>
                             <span>Tue</span>
@@ -59,7 +59,24 @@
 <script src="{{ asset('js/dayjs.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 <script>
-var day = dayjs();
+
+var daySelected = dayjs().format();
+var dayjs = dayjs();
+
+updateCalendar(dayjs);
+
+function before(){
+    dayjs = dayjs.subtract(1, "month");
+    updateCalendar(dayjs);
+
+}
+
+function after(){
+    dayjs = dayjs.add(1, "month");
+    updateCalendar(dayjs);
+}
+
+function updateCalendar(day){
 var this_month = day.get('month')+1;
 var month_name = (this_month == 1) ? "January" :
 (this_month == 2) ? "February" :
@@ -72,29 +89,19 @@ var month_name = (this_month == 1) ? "January" :
 (this_month == 9) ? "September" :
 (this_month == 10) ? "October" :
 (this_month == 11) ? "November" : "December";
-document.getElementById("calendarTitle").innerHTML = month_name + " " + day.get('year');
-
+document.getElementById("calendarTitle").innerHTML = month_name + " " + day.get('year')+'<span style="float:right;"><a id="btn-before" class="arrow-btn" onclick="before();" href="javascript:void(0)">&lt;</a><a id="btn-after" class="arrow-btn" onclick="after();" href="javascript:void(0)">&gt;</a></span>';
 var days_in_last_month = day.subtract(1, "month").daysInMonth();
 var month_start = day.date(1).$W - 1;
-
 var month_count = days_in_last_month - month_start;
-
 var calendarDays = document.getElementById("calendarDays");
-
-
+calendarDays.innerHTML = "";
 for (let i = month_start; i > 0; i--) {
     month_count = month_count + 1;
-    console.log(month_count);
     calendarDays.insertAdjacentHTML('beforeend', '<a class="disabled">'+month_count+'</a>');
 }
-
-var
-
-const days = [day.date(1)];
-days.forEach(addDay);
-
-function addDay(value, index, array) {
-
+for (let i = 1; i <= day.daysInMonth(); i++) {
+    calendarDays.insertAdjacentHTML('beforeend', '<a href="javascript:void(0);">'+i+'</a>');
+}
 }
 </script>
 </html>
