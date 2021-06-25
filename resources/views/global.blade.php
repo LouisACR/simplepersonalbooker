@@ -25,7 +25,7 @@
                     <div class="col-12">
                         <h2 class="small-title">Book your slot now.</h2>
                     </div>
-                   
+
                     <div class="col-12">
                         <p id="help" class="pick">Please enter your full name and email.</p>
                     </div>
@@ -35,7 +35,7 @@
                         <button type="submit" class="btn">Next</button>
                     </form>
                     <div id="calendar" class="calendar" style="display:none">
-                        <h3 class="title">April 2021</h3>
+                        <h3 id="calendarTitle" class="title">NaN 2021</h3>
                         <div class="daytags">
                             <span>Mon</span>
                             <span>Tue</span>
@@ -45,40 +45,7 @@
                             <span>Sat</span>
                             <span>Sun</span>
                         </div>
-                        <div class="days">
-                            <a href="javascript:void(0);" class="disabled">29</a>
-                            <a href="javascript:void(0);" class="disabled">30</a>
-                            <a href="javascript:void(0);" class="disabled">31</a>
-                            <a href="javascript:void(0);">1</a>
-                            <a href="javascript:void(0);">2</a>
-                            <a href="javascript:void(0);" class="disabled">3</a>
-                            <a href="javascript:void(0);" class="disabled">4</a>
-                            <a href="javascript:void(0);">5</a>
-                            <a href="javascript:void(0);">6</a>
-                            <a class="selected" href="javascript:void(0);">7</a>
-                            <a href="javascript:void(0);">8</a>
-                            <a href="javascript:void(0);">9</a>
-                            <a href="javascript:void(0);" class="disabled">10</a>
-                            <a href="javascript:void(0);" class="disabled">11</a>
-                            <a href="javascript:void(0);">12</a>
-                            <a href="javascript:void(0);">13</a>
-                            <a href="javascript:void(0);">14</a>
-                            <a href="javascript:void(0);">15</a>
-                            <a href="javascript:void(0);">16</a>
-                            <a href="javascript:void(0);" class="disabled">17</a>
-                            <a href="javascript:void(0);" class="disabled">18</a>
-                            <a href="javascript:void(0);">19</a>
-                            <a class="selected">20</a>
-                            <a href="javascript:void(0);">21</a>
-                            <a href="javascript:void(0);">22</a>
-                            <a href="javascript:void(0);">23</a>
-                            <a href="javascript:void(0);" class="disabled">24</a>
-                            <a href="javascript:void(0);" class="disabled">25</a>
-                            <a href="javascript:void(0);">26</a>
-                            <a href="javascript:void(0);">27</a>
-                            <a href="javascript:void(0);">28</a>
-                            <a href="javascript:void(0);">29</a>
-                            <a href="javascript:void(0);">30</a>
+                        <div id="calendarDays" class="days">
                         </div>
                     </div>
                     <div style="display:none;margin-bottom:10px" id="nextCalen" class="col-10-center">
@@ -91,5 +58,43 @@
 </body>
 <script src="{{ asset('js/dayjs.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
+<script>
+var day = dayjs();
+var this_month = day.get('month')+1;
+var month_name = (this_month == 1) ? "January" :
+(this_month == 2) ? "February" :
+(this_month == 3) ? "March" :
+(this_month == 4) ? "April" :
+(this_month == 5) ? "May" :
+(this_month == 6) ? "June" :
+(this_month == 7) ? "July" :
+(this_month == 8) ? "August" :
+(this_month == 9) ? "September" :
+(this_month == 10) ? "October" :
+(this_month == 11) ? "November" : "December";
+document.getElementById("calendarTitle").innerHTML = month_name + " " + day.get('year');
 
+var days_in_last_month = day.subtract(1, "month").daysInMonth();
+var month_start = day.date(1).$W - 1;
+
+var month_count = days_in_last_month - month_start;
+
+var calendarDays = document.getElementById("calendarDays");
+
+
+for (let i = month_start; i > 0; i--) {
+    month_count = month_count + 1;
+    console.log(month_count);
+    calendarDays.insertAdjacentHTML('beforeend', '<a class="disabled">'+month_count+'</a>');
+}
+
+var
+
+const days = [day.date(1)];
+days.forEach(addDay);
+
+function addDay(value, index, array) {
+
+}
+</script>
 </html>
