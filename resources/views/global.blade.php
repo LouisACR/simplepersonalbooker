@@ -23,8 +23,9 @@
                         <p>30 minute meeting by John A. SMITH</p>
                     </div>
                     <div class="col-12">
-                        <h2 class="small-title">Book your slot now</h2>
+                        <h2 class="small-title">Book your slot now.</h2>
                     </div>
+                   
                     <div class="col-12">
                         <p id="help" class="pick">Please enter your full name and email.</p>
                     </div>
