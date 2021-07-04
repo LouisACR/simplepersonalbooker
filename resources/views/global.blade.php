@@ -49,7 +49,22 @@
                         </div>
                     </div>
                     <div style="display:none;margin-bottom:10px" id="nextCalen" class="col-10-center">
-                        <button onclick="nextCalendar()" class="btn" disabled>Next</button>
+                        <button onclick="nextCalendar()" class="btn">Next</button>
+                    </div>
+                    <div id="chooseTime" class="col-10-center" style="display:none">
+                        <a onclick="backToCalendar();" style="float: left;text-decoration: none;color: rgb(90, 90, 90);margin-top: 20px;" href="javascript:void(0);">🠔Back</a>
+                        <h3 id="dateSelected" style="color: rgb(34, 127, 248);float: right">01 April 2000</h3>
+                        <div class="times">
+                            <a class="time_button" onclick="selectTime(this, 13,00);" href="javascript:void(0);">13:00</a>
+                            <a class="time_button" onclick="selectTime(this, 14,00);" href="javascript:void(0);">14:00</a>
+                            <a class="time_button" onclick="selectTime(this, 15,00);" href="javascript:void(0);">15:00</a>
+                            <a class="time_button" onclick="selectTime(this, 16,00);" href="javascript:void(0);">16:00</a>
+                            <a class="time_button" onclick="selectTime(this, 17,00);" href="javascript:void(0);">17:00</a>
+                            <a class="time_button" onclick="selectTime(this, 18,00);" href="javascript:void(0);">18:00</a>
+                        </div>
+                    </div>
+                    <div style="display:none;margin-bottom:10px" id="finishCalen" class="col-10-center">
+                        <button onclick="finishCalendar()" class="btn" disabled>Book now</button>
                     </div>
                 </div>
             </div>
@@ -58,50 +73,4 @@
 </body>
 <script src="{{ asset('js/dayjs.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
-<script>
-
-var daySelected = dayjs().format();
-var dayjs = dayjs();
-
-updateCalendar(dayjs);
-
-function before(){
-    dayjs = dayjs.subtract(1, "month");
-    updateCalendar(dayjs);
-
-}
-
-function after(){
-    dayjs = dayjs.add(1, "month");
-    updateCalendar(dayjs);
-}
-
-function updateCalendar(day){
-var this_month = day.get('month')+1;
-var month_name = (this_month == 1) ? "January" :
-(this_month == 2) ? "February" :
-(this_month == 3) ? "March" :
-(this_month == 4) ? "April" :
-(this_month == 5) ? "May" :
-(this_month == 6) ? "June" :
-(this_month == 7) ? "July" :
-(this_month == 8) ? "August" :
-(this_month == 9) ? "September" :
-(this_month == 10) ? "October" :
-(this_month == 11) ? "November" : "December";
-document.getElementById("calendarTitle").innerHTML = month_name + " " + day.get('year')+'<span style="float:right;"><a id="btn-before" class="arrow-btn" onclick="before();" href="javascript:void(0)">&lt;</a><a id="btn-after" class="arrow-btn" onclick="after();" href="javascript:void(0)">&gt;</a></span>';
-var days_in_last_month = day.subtract(1, "month").daysInMonth();
-var month_start = day.date(1).$W - 1;
-var month_count = days_in_last_month - month_start;
-var calendarDays = document.getElementById("calendarDays");
-calendarDays.innerHTML = "";
-for (let i = month_start; i > 0; i--) {
-    month_count = month_count + 1;
-    calendarDays.insertAdjacentHTML('beforeend', '<a class="disabled">'+month_count+'</a>');
-}
-for (let i = 1; i <= day.daysInMonth(); i++) {
-    calendarDays.insertAdjacentHTML('beforeend', '<a href="javascript:void(0);">'+i+'</a>');
-}
-}
-</script>
 </html>
