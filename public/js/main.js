@@ -3,6 +3,7 @@ var timeSelected = null;
 var dayjs = dayjs();
 var fixed_dayjs = dayjs.clone();
 var dayjsSelected = fixed_dayjs.clone();
+var times = [{hour:13,minute:0},{hour:13,minute:30},{hour:14,minute:0},{hour:14,minute:30},{hour:15,minute:0},{hour:15,minute:30},{hour:16,minute:0},{hour:16,minute:30},{hour:17,minute:0}]
 
 document.querySelector("#iden").addEventListener("submit", function(e){
         e.preventDefault();    //stop form from submitting
@@ -27,6 +28,10 @@ function backToCalendar(){
     document.getElementById("nextCalen").style.display = 'block';
     document.getElementById("nextCalen").children[0].innerHTML = "Next: <i style=\"font-size: 14px;font-weight: normal;\">"+dayjsSelected.get('date')+" "+getMonthName(dayjsSelected.get("month")+1)+" "+dayjsSelected.get('year')+"</i>";
     document.getElementById("help").innerHTML = 'Please select a date that suits you.';
+    if(timeSelected!=null){
+        timeSelected.classList.remove("select");
+        timeSelected = null;
+    }
 }
 
 function getMonthName(month){
@@ -45,6 +50,7 @@ return month_name;
 }
 
 updateCalendar(dayjs);
+updateTimes();
 
 function before(){
     dayjs = dayjs.subtract(1, "month");
@@ -167,4 +173,25 @@ function selectTime(btn, hour, minute){
     }
     console.log(hour+":"+displayMinute);
     document.getElementById("dateSelected").innerHTML = dayjsSelected.get('date')+" "+getMonthName(dayjsSelected.get("month")+1)+" "+dayjsSelected.get('year')+" at "+hour+":"+displayMinute;
+}
+
+function updateTimes(startNumber=0){
+    var timeDiv = document.getElementById("timeDiv");
+    timeDiv.innerHTML = "";
+    if(timeSelected!=null){
+        timeSelected.classList.remove("select");
+        timeSelected=null;
+    }
+    for (let i = startNumber; i < startNumber+6; i++) {
+        if(i+1<=times.length){
+        var timeI = times[i];
+        var hour = timeI.hour;
+        var minute = timeI.minute;
+        var displayMinute = minute;
+        if(minute<10){
+            displayMinute = "0"+minute;
+        }
+        timeDiv.insertAdjacentHTML('beforeend', '<a class="time_button" onclick="selectTime(this, '+hour+','+displayMinute+');" href="javascript:void(0);">'+hour+':'+displayMinute+'</a>');
+        }
+    }
 }

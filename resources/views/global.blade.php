@@ -54,14 +54,7 @@
                     <div id="chooseTime" class="col-10-center" style="display:none">
                         <a onclick="backToCalendar();" style="float: left;text-decoration: none;color: rgb(90, 90, 90);margin-top: 20px;" href="javascript:void(0);">🠔Back</a>
                         <h3 id="dateSelected" style="color: rgb(34, 127, 248);float: right">01 April 2000</h3>
-                        <div class="times">
-                            <a class="time_button" onclick="selectTime(this, 13,00);" href="javascript:void(0);">13:00</a>
-                            <a class="time_button" onclick="selectTime(this, 14,00);" href="javascript:void(0);">14:00</a>
-                            <a class="time_button" onclick="selectTime(this, 15,00);" href="javascript:void(0);">15:00</a>
-                            <a class="time_button" onclick="selectTime(this, 16,00);" href="javascript:void(0);">16:00</a>
-                            <a class="time_button" onclick="selectTime(this, 17,00);" href="javascript:void(0);">17:00</a>
-                            <a class="time_button" onclick="selectTime(this, 18,00);" href="javascript:void(0);">18:00</a>
-                        </div>
+                        <div id="timeDiv" class="times"></div>
                     </div>
                     <div style="display:none;margin-bottom:10px" id="finishCalen" class="col-10-center">
                         <button onclick="finishCalendar()" class="btn" disabled>Book now</button>
