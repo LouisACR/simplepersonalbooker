@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Route::get('/meeting/{uuid}', function ($uuid) {
+    return view('global', ['uuid' => $uuid]);
 });
 
-Route::get('/global', function () {
-    return view('global');
+Route::get('/', function () {
+    return view('global', ['uuid' => 'HKa1ChC2b8GNNtwKrfoYODhUw4N3kCW7QFMUuM6K']);
 });

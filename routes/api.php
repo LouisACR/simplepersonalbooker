@@ -18,6 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('booking/book', function (Request $request) {
-    return null;
-});
+Route::get('meeting/create', 'App\Http\Controllers\MeetingController@create');
+

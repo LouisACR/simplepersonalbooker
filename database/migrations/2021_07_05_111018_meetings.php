@@ -15,7 +15,7 @@ class Meetings extends Migration
     {
         Schema::create('meetings', function (Blueprint $table) {
             $table->increments('id');
-            $table->uuid('uuid');
+            $table->string('uuid');
             $table->string('booker'); // nom du booker
             $table->string('booker_img'); //url
             $table->string('name'); // nom du meeting

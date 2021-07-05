@@ -1,5 +1,7 @@
+<?php
+$meeting = App\Models\Meeting::where('uuid', $uuid)->first();
+?>
 <html>
-
 <head>
     <title>Simple Personal Booker</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -12,15 +14,15 @@
             <!-- Box START -->
             <div class="box-header">
                 <div class="avatar">
-                    <img src="https://feedback.upvoty.com/images/avatar/39263/04f7f73267502fa37faa/">
-                    <h2>John A. SMITH</h2>
+                    <img src="{{ $meeting->booker_img; }}">
+                    <h2>{{ $meeting->booker; }}</h2>
                 </div>
             </div>
             <div class="box-content">
                 <div class="row">
                     <div class="meeting">
-                        <h1>Business Virtual Classroom</h1>
-                        <p>30 minute meeting by John A. SMITH</p>
+                        <h1>{{ $meeting->name; }}</h1>
+                        <p>{{ $meeting->description; }}</p>
                     </div>
                     <div class="col-12">
                         <h2 class="small-title">Book your slot now.</h2>
@@ -30,6 +32,7 @@
                         <p id="help" class="pick">Please enter your full name and email.</p>
                     </div>
                     <form class="col-10-center" id="iden" method="POST">
+                        @csrf
                         <input required type="text" class="big-input" placeholder="Please enter your full name">
                         <input required type="email" class="big-input" placeholder="Please enter your email">
                         <button type="submit" class="btn">Next</button>
@@ -65,5 +68,8 @@
     </div>
 </body>
 <script src="{{ asset('js/dayjs.min.js') }}"></script>
+<script>
+var times = [{hour:13,minute:0},{hour:13,minute:30},{hour:14,minute:0},{hour:14,minute:30},{hour:15,minute:0},{hour:15,minute:30},{hour:16,minute:0},{hour:16,minute:30},{hour:17,minute:0}];
+</script>
 <script src="{{ asset('js/main.js') }}"></script>
 </html>

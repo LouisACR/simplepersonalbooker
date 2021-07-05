@@ -3,7 +3,6 @@ var timeSelected = null;
 var dayjs = dayjs();
 var fixed_dayjs = dayjs.clone();
 var dayjsSelected = fixed_dayjs.clone();
-var times = [{hour:13,minute:0},{hour:13,minute:30},{hour:14,minute:0},{hour:14,minute:30},{hour:15,minute:0},{hour:15,minute:30},{hour:16,minute:0},{hour:16,minute:30},{hour:17,minute:0}]
 
 document.querySelector("#iden").addEventListener("submit", function(e){
         e.preventDefault();    //stop form from submitting

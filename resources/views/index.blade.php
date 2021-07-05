@@ -1,3 +1,6 @@
+<?php
+$meeting = App\Models\Meeting::where('uuid', $uuid)->first();
+?>
 <html>
 
 <head>
@@ -11,17 +14,18 @@
             <!-- Box START -->
             <div class="box-header">
                 <div class="avatar">
-                    <img src="https://feedback.upvoty.com/images/avatar/39263/04f7f73267502fa37faa/">
-                    <h2>John A. SMITH</h2>
+                    <img src="<?php echo $meeting->booker_img; ?>">
+                    <h2><?php echo $meeting->booker; ?></h2>
                 </div>
             </div>
             <div class="box-content">
                 <div class="row">
                     <div class="col-12">
                         <h1>You have been invited.</h1>
+                        <h1><?php echo $meeting->name; ?></h1>
                     </div>
                     <div class="col-12">
-                        <p><b>John A. SMITH</b> has invited you (Nia ROMAIN) to join a meeting : <br><b class="text-blue">Business Virtual Classroom</b>.<br> Please select a slot to confirm this invitation.</p>
+                        <p><?php echo $meeting->description; ?></p>
                     </div>
                     <div class="col-12">
                         <h2 class="small-title">Book your slot now</h2>
