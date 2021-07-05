@@ -210,7 +210,7 @@ form {
 .time_button {
     grid-column: span 6;
     text-decoration: none;
-    color:rgb(85, 47, 255);
+    color: rgb(85, 47, 255);
     border: 1px solid rgb(85, 47, 255);
     background-color: rgba(41, 55, 251, 0.05);
     padding: 5px;

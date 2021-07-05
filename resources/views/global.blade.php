@@ -1,7 +1,8 @@
 <?php
-$meeting = App\Models\Meeting::where('uuid', $uuid)->first();
+$meeting = App\Models\Meeting::whereRaw('BINARY `uuid`= ?', $uuid)->first()->fresh();
 ?>
 <html>
+
 <head>
     <title>Simple Personal Booker</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -38,7 +39,9 @@ $meeting = App\Models\Meeting::where('uuid', $uuid)->first();
                         <button type="submit" class="btn">Next</button>
                     </form>
                     <div id="calendar" class="calendar" style="display:none">
-                        <h3 id="calendarTitle" class="title">NaN 2021<span style="float:right;"><a id="btn-before" class="arrow-btn" href="javascript:void();">&lt;</a><a id="btn-after" class="arrow-btn" href="javascript:void();">&gt;</a></span></h3>
+                        <h3 id="calendarTitle" class="title">NaN 2021<span style="float:right;"><a id="btn-before"
+                                    class="arrow-btn" href="javascript:void();">&lt;</a><a id="btn-after"
+                                    class="arrow-btn" href="javascript:void();">&gt;</a></span></h3>
                         <div class="daytags">
                             <span>Mon</span>
                             <span>Tue</span>
@@ -55,7 +58,9 @@ $meeting = App\Models\Meeting::where('uuid', $uuid)->first();
                         <button onclick="nextCalendar()" class="btn">Next</button>
                     </div>
                     <div id="chooseTime" class="col-10-center" style="display:none">
-                        <a onclick="backToCalendar();" style="float: left;text-decoration: none;color: rgb(90, 90, 90);margin-top: 20px;" href="javascript:void(0);">🠔Back</a>
+                        <a onclick="backToCalendar();"
+                            style="float: left;text-decoration: none;color: rgb(90, 90, 90);margin-top: 20px;"
+                            href="javascript:void(0);">🠔Back</a>
                         <h3 id="dateSelected" style="color: rgb(34, 127, 248);float: right">01 April 2000</h3>
                         <div id="timeDiv" class="times"></div>
                     </div>
@@ -69,7 +74,9 @@ $meeting = App\Models\Meeting::where('uuid', $uuid)->first();
 </body>
 <script src="{{ asset('js/dayjs.min.js') }}"></script>
 <script>
-var times = [{hour:13,minute:0},{hour:13,minute:30},{hour:14,minute:0},{hour:14,minute:30},{hour:15,minute:0},{hour:15,minute:30},{hour:16,minute:0},{hour:16,minute:30},{hour:17,minute:0}];
+    var times = [{hour:13,minute:0},{hour:13,minute:30},{hour:14,minute:0},{hour:14,minute:30},{hour:15,minute:0},{hour:15,minute:30},{hour:16,minute:0},{hour:16,minute:30},{hour:17,minute:0}];
+var recurring_off = JSON.parse("<?php echo $meeting->recurring_off; ?>");
 </script>
 <script src="{{ asset('js/main.js') }}"></script>
+
 </html>

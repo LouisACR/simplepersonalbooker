@@ -22,6 +22,8 @@ class Meetings extends Migration
             $table->string('description');
             $table->integer('duration'); // durée d'un meeting en minutes
             $table->integer('spacing'); // espacement des durées en minutes
+            $table->integer('time_min')->default(8); // heure debut d'une journée
+            $table->integer('time_max')->default(18); // heure fin d'une journée
             $table->json('recurring_off');
             $table->json('onetime_off');
             $table->timestamps();

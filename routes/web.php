@@ -18,5 +18,5 @@ Route::get('/meeting/{uuid}', function ($uuid) {
 });
 
 Route::get('/', function () {
-    return view('global', ['uuid' => 'HKa1ChC2b8GNNtwKrfoYODhUw4N3kCW7QFMUuM6K']);
+    return view('global', ['uuid' => '25E17BxBdpUxjxmPBXKe']);
 });
