@@ -63,6 +63,7 @@ $meeting = App\Models\Meeting::whereRaw('BINARY `uuid`= ?', $uuid)->first()->fre
                             href="javascript:void(0);">🠔Back</a>
                         <h3 id="dateSelected" style="color: rgb(34, 127, 248);float: right">01 April 2000</h3>
                         <div id="timeDiv" class="times"></div>
+                        <div style="margin-top: 10px"><a onclick="showLess()" href="javascript:void(0);" style="margin-right: 10px;text-decoration: none; color:rgb(46, 46, 46)">Back</a> Page <span id="current_page">1</span>/<span id="page_limit"></span> <a onclick="showMore()" href="javascript:void(0);" style="margin-left: 10px;text-decoration: none; color:rgb(46, 46, 46)">More</a></div>
                     </div>
                     <div style="display:none;margin-bottom:10px" id="finishCalen" class="col-10-center">
                         <button onclick="finishCalendar()" class="btn" disabled>Book now</button>
@@ -73,10 +74,60 @@ $meeting = App\Models\Meeting::whereRaw('BINARY `uuid`= ?', $uuid)->first()->fre
     </div>
 </body>
 <script src="{{ asset('js/dayjs.min.js') }}"></script>
+<script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 <script>
-    var times = [{hour:13,minute:0},{hour:13,minute:30},{hour:14,minute:0},{hour:14,minute:30},{hour:15,minute:0},{hour:15,minute:30},{hour:16,minute:0},{hour:16,minute:30},{hour:17,minute:0}];
+var times = [{hour:0,minute:0},{hour:0,minute:0},{hour:0,minute:0},{hour:0,minute:0},{hour:0,minute:0},{hour:0,minute:0}];
 var recurring_off = JSON.parse("<?php echo $meeting->recurring_off; ?>");
 </script>
 <script src="{{ asset('js/main.js') }}"></script>
+<script>
+
+var time_offset = 1;
+function showMore(){
+    var limit = Math.ceil(times.length/6);
+    if(time_offset<limit){
+    time_offset = time_offset+1;
+    document.getElementById("current_page").innerHTML = time_offset;
+    updateTimes((time_offset-1)*6);
+    }
+}
+function showLess(){
+    var limit = Math.ceil(times.length/6);
+    if((time_offset-1)>0){
+    time_offset = time_offset-1;
+    document.getElementById("current_page").innerHTML = time_offset;
+    updateTimes((time_offset-1)*6);
+    }
+}
+
+    function nextCalendar() {
+    document.getElementById("chooseTime").style.display = "block";
+    document.getElementById("finishCalen").style.display = "block";
+    document.getElementById("calendar").style.display = "none";
+    document.getElementById("nextCalen").style.display = "none";
+    document.getElementById("dateSelected").innerHTML =
+        dayjsSelected.get("date") +
+        " " +
+        getMonthName(dayjsSelected.get("month") + 1) +
+        " " +
+        dayjsSelected.get("year");
+    document.getElementById("help").innerHTML =
+        "Please select a time that suits you.";
+        $.ajax({
+            type: 'GET',
+            url: "/api/meeting/times",
+            data: {date: dayjsSelected.format(),uuid: '{{ $uuid }}'},
+            beforeSend: function(data){
+                times = [{hour:0,minute:0},{hour:0,minute:0},{hour:0,minute:0},{hour:0,minute:0},{hour:0,minute:0},{hour:0,minute:0}];
+                updateTimes();
+            },
+            success: function(data){
+                console.log(data);
+                times = data;
+                updateTimes();
+            }
+            });
+}
+</script>
 
 </html>

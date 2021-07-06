@@ -4,6 +4,7 @@ var dayjs = dayjs();
 var fixed_dayjs = dayjs.clone();
 var dayjsSelected = fixed_dayjs.clone();
 
+
 document.querySelector("#iden").addEventListener("submit", function (e) {
     e.preventDefault(); //stop form from submitting
     document.getElementById("iden").style.display = "none";
@@ -29,6 +30,8 @@ document.querySelector("#iden").addEventListener("submit", function (e) {
 });
 
 function backToCalendar() {
+    time_offset = 1;
+    document.getElementById("current_page").innerHTML = time_offset;
     document.getElementById("chooseTime").style.display = "none";
     document.getElementById("finishCalen").style.display = "none";
     document.getElementById("calendar").style.display = "block";
@@ -207,7 +210,6 @@ function updateCalendar(day) {
 }
 
 updateCalendar(dayjs);
-updateTimes();
 
 function updateDays(day, calendarDays, this_month, month_count, month_start) {
     var year = dayjs.get("year");
@@ -273,21 +275,6 @@ function select(btn, day, month, year) {
         "</i>";
 }
 
-function nextCalendar() {
-    document.getElementById("chooseTime").style.display = "block";
-    document.getElementById("finishCalen").style.display = "block";
-    document.getElementById("calendar").style.display = "none";
-    document.getElementById("nextCalen").style.display = "none";
-    document.getElementById("dateSelected").innerHTML =
-        dayjsSelected.get("date") +
-        " " +
-        getMonthName(dayjsSelected.get("month") + 1) +
-        " " +
-        dayjsSelected.get("year");
-    document.getElementById("help").innerHTML =
-        "Please select a time that suits you.";
-}
-
 function selectTime(btn, hour, minute) {
     if (timeSelected != null) {
         timeSelected.classList.remove("select");
@@ -329,6 +316,13 @@ function updateTimes(startNumber = 0) {
             if (minute < 10) {
                 displayMinute = "0" + minute;
             }
+            if(hour==0&&minute==0){
+                timeDiv.insertAdjacentHTML(
+                    "beforeend",
+                    '<a class="time_button loading" disabled></a>'
+                );
+            } else {
+
             timeDiv.insertAdjacentHTML(
                 "beforeend",
                 '<a class="time_button" onclick="selectTime(this, ' +
@@ -341,6 +335,8 @@ function updateTimes(startNumber = 0) {
                     displayMinute +
                     "</a>"
             );
+            }
         }
     }
+    document.getElementById("page_limit").innerHTML = Math.ceil(times.length/6);
 }
