@@ -441,7 +441,7 @@ function finishCalendar() {
             document.getElementById('messageH1').innerHTML = 'Booking successful!';
             document.getElementById('messageP').style.display = "block";
             var displayMinute = dayjsSelected.get("minute");
-            if (minute < 10) {
+            if (dayjsSelected.get("minute") < 10) {
                 displayMinute = "0" + dayjsSelected.get("minute");
             }
             document.getElementById('finalDate').innerHTML = dayjsSelected.get('date')+' '+getMonthName(dayjsSelected.get("month") + 1)+' '+dayjsSelected.get("year")+' at '+dayjsSelected.get("hour")+':'+displayMinute;

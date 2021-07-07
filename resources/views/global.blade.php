@@ -15,45 +15,50 @@ $meeting = App\Models\Meeting::whereRaw('BINARY `uuid`= ?', $uuid)->first()->fre
             <!-- Box START -->
             <div class="box-header">
                 <div class="avatar">
-                    <img src="{{ $meeting->booker_img; }}">
-                    <h2>{{ $meeting->booker; }}</h2>
+                    <img src="{{ $meeting->booker_img }}">
+                    <h2>{{ $meeting->booker }}</h2>
                 </div>
             </div>
             <div class="box-content">
                 <div class="row">
                     <div id="meetingDiv" class="meeting">
-                        <h1>{{ $meeting->name; }}</h1>
-                        <p>{{ $meeting->description; }}</p>
+                        <h1>{{ $meeting->name }}</h1>
+                        <p>{{ $meeting->description }}</p>
                     </div>
                     <div id="maindiv" class="col-12">
                         <h2 class="small-title">Book your slot now.</h2>
                     </div>
                     <div id="svg-green" style="display:none;" class="svg-box">
                         <svg style="width: 150px" class="circular green-stroke">
-                            <circle class="path" cx="75" cy="75" r="50" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+                            <circle class="path" cx="75" cy="75" r="50" fill="none" stroke-width="5"
+                                stroke-miterlimit="10" />
                         </svg>
                         <svg class="checkmark green-stroke">
                             <g transform="matrix(0.79961,8.65821e-32,8.39584e-32,0.79961,-489.57,-205.679)">
-                                <path class="checkmark__check" fill="none" d="M616.306,283.025L634.087,300.805L673.361,261.53"/>
+                                <path class="checkmark__check" fill="none"
+                                    d="M616.306,283.025L634.087,300.805L673.361,261.53" />
                             </g>
                         </svg>
                     </div>
                     <div id="svg-red" class="svg-box" style="display:none;">
                         <svg style="width: 150px" class="circular red-stroke">
-                            <circle class="path" cx="75" cy="75" r="50" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+                            <circle class="path" cx="75" cy="75" r="50" fill="none" stroke-width="5"
+                                stroke-miterlimit="10" />
                         </svg>
                         <svg class="cross red-stroke">
                             <g transform="matrix(0.79961,8.65821e-32,8.39584e-32,0.79961,-502.652,-204.518)">
-                                <path class="first-line" d="M634.087,300.805L673.361,261.53" fill="none"/>
+                                <path class="first-line" d="M634.087,300.805L673.361,261.53" fill="none" />
                             </g>
                             <g transform="matrix(-1.28587e-16,-0.79961,0.79961,-1.28587e-16,-204.752,543.031)">
-                                <path class="second-line" d="M634.087,300.805L673.361,261.53"/>
+                                <path class="second-line" d="M634.087,300.805L673.361,261.53" />
                             </g>
                         </svg>
                     </div>
                     <div id="message" class="meeting" style="display:none">
-                    <h1 id="messageH1"></h1>
-                    <p id="messageP">You have booked successfully for <b>{{ $meeting->name; }}</b><br><br><span style="font-size: 20px; color:rgb(59, 142, 250);font-weight: bold;" id="finalDate"></span></p>
+                        <h1 id="messageH1"></h1>
+                        <p id="messageP">You have booked successfully for <b>{{ $meeting->name }}</b><br><br><span
+                                style="font-size: 20px; color:rgb(59, 142, 250);font-weight: bold;"
+                                id="finalDate"></span></p>
                     </div>
                     <div id="helpdiv" class="col-12">
                         <p id="help" class="pick">Please enter your full name and email.</p>
