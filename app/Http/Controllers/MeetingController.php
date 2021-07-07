@@ -44,11 +44,26 @@ class MeetingController extends Controller
                 return response()->json(['error' => 'uuid invalid'], 400);
             }
             $meeting = $meeting->first();
+            date_default_timezone_set($meeting->timezone);
+            $dayTODAY = date('d', time());
+            $monthTODAY = date('m', time());
+            $yearTODAY = date('Y', time());
+
+            $day = date('d', strtotime($date));
+            $month = date('m', strtotime($date));
+            $year = date('Y', strtotime($date));
 
             // CHECK IF DATE HAS TIMES
-            if(strtotime($date) < time()){
-                return response()->json(['error' => 'no times for this date (past date)'], 400);
+            if($year < $yearTODAY){
+                return response()->json(['error' => 'no times for this date (past year)'], 400);
+            } else
+            if($year <= $yearTODAY && $month < $monthTODAY){
+                return response()->json(['error' => 'no times for this date (past month)'], 400);
+            } else
+            if($year <= $yearTODAY && $month <= $monthTODAY && $day < $dayTODAY){
+                return response()->json(['error' => 'no times for this date (past day)'], 400);
             }
+
             if(json_decode($meeting->recurring_off)[date('w', strtotime($date))]==1){
                 return response()->json(['error' => 'no times for this date (booker recurring_off)'], 400);
             }
@@ -56,6 +71,9 @@ class MeetingController extends Controller
             // TODO: Check for already booked and google agenda in future
 
             $time_min = $meeting->time_min; // 8
+            if($year == $yearTODAY && $month == $monthTODAY && $day == $dayTODAY){
+            $time_min = round(date('H', time())+((date('i', time()) + $meeting->spacing)/60));
+            }
             $time_max = $meeting->time_max; // 18
             $spacing = $meeting->spacing; // 8
             $hourInDay = $time_max - $time_min; // 10
@@ -65,8 +83,8 @@ class MeetingController extends Controller
             $startingTimeMin = 0;
             for ($i=0; $i<$hourInDay; $i++) {
                 for ($is=0; $is<$slotsPerHour; $is++) {
-                    if(floor($startingTimeHour)<$time_max){
-                    array_push($time_arr, ['hour' => floor($startingTimeHour),'minute' => $startingTimeMin]);
+                    if($startingTimeHour<$time_max){
+                    array_push($time_arr, ['hour' => $startingTimeHour,'minute' => $startingTimeMin]);
                     }
                     $startingTimeMin = $startingTimeMin + $spacing;
                     if($startingTimeMin >= 60){

@@ -279,6 +279,7 @@ function selectTime(btn, hour, minute) {
     if (timeSelected != null) {
         timeSelected.classList.remove("select");
     }
+    document.getElementById("booknow").disabled = false;
     dayjsSelected = dayjsSelected.set("hour", hour);
     dayjsSelected = dayjsSelected.set("minute", minute);
     btn.classList.add("select");
@@ -301,6 +302,13 @@ function selectTime(btn, hour, minute) {
 }
 
 function updateTimes(startNumber = 0) {
+    document.getElementById("booknow").disabled = true;
+    document.getElementById("dateSelected").innerHTML =
+        dayjsSelected.get("date") +
+        " " +
+        getMonthName(dayjsSelected.get("month") + 1) +
+        " " +
+        dayjsSelected.get("year");
     var timeDiv = document.getElementById("timeDiv");
     timeDiv.innerHTML = "";
     if (timeSelected != null) {
@@ -339,4 +347,51 @@ function updateTimes(startNumber = 0) {
         }
     }
     document.getElementById("page_limit").innerHTML = Math.ceil(times.length/6);
+}
+
+var time_offset = 1;
+function showMore(){
+    var limit = Math.ceil(times.length/6);
+    if(time_offset<limit){
+    time_offset = time_offset+1;
+    document.getElementById("current_page").innerHTML = time_offset;
+    updateTimes((time_offset-1)*6);
+    }
+}
+function showLess(){
+    var limit = Math.ceil(times.length/6);
+    if((time_offset-1)>0){
+    time_offset = time_offset-1;
+    document.getElementById("current_page").innerHTML = time_offset;
+    updateTimes((time_offset-1)*6);
+    }
+}
+
+    function nextCalendar() {
+    document.getElementById("chooseTime").style.display = "block";
+    document.getElementById("finishCalen").style.display = "block";
+    document.getElementById("calendar").style.display = "none";
+    document.getElementById("nextCalen").style.display = "none";
+    document.getElementById("dateSelected").innerHTML =
+        dayjsSelected.get("date") +
+        " " +
+        getMonthName(dayjsSelected.get("month") + 1) +
+        " " +
+        dayjsSelected.get("year");
+    document.getElementById("help").innerHTML =
+        "Please select a time that suits you.";
+        $.ajax({
+            type: 'GET',
+            url: "/api/meeting/times",
+            data: {date: dayjsSelected.format(),uuid: uuid},
+            beforeSend: function(data){
+                times = [{hour:0,minute:0},{hour:0,minute:0},{hour:0,minute:0},{hour:0,minute:0},{hour:0,minute:0},{hour:0,minute:0}];
+                updateTimes();
+            },
+            success: function(data){
+                console.log(data);
+                times = data;
+                updateTimes();
+            }
+            });
 }

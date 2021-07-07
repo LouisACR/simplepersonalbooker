@@ -26,6 +26,7 @@ class Meetings extends Migration
             $table->integer('time_max')->default(18); // heure fin d'une journée
             $table->json('recurring_off');
             $table->json('onetime_off');
+            $table->string('timezone')->default('Europe/Paris');
             $table->timestamps();
         });
     }
