@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('meeting/create', 'App\Http\Controllers\MeetingController@create');
 Route::get('meeting/times', 'App\Http\Controllers\MeetingController@getTimes');
+
+Route::get('booking/create', 'App\Http\Controllers\BookingController@create');

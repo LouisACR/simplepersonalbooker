@@ -4,14 +4,13 @@ var dayjs = dayjs();
 var fixed_dayjs = dayjs.clone();
 var dayjsSelected = fixed_dayjs.clone();
 
-
 document.querySelector("#iden").addEventListener("submit", function (e) {
     e.preventDefault(); //stop form from submitting
     document.getElementById("iden").style.display = "none";
     document.getElementById("calendar").style.display = "block";
     document.getElementById("nextCalen").style.display = "block";
     document.getElementById("nextCalen").children[0].innerHTML =
-        'Next: <i style="font-size: 14px;font-weight: normal;">' +
+        'Confirm: <i style="font-size: 14px;font-weight: normal;">' +
         dayjsSelected.get("date") +
         " " +
         getMonthName(dayjsSelected.get("month") + 1) +
@@ -37,7 +36,7 @@ function backToCalendar() {
     document.getElementById("calendar").style.display = "block";
     document.getElementById("nextCalen").style.display = "block";
     document.getElementById("nextCalen").children[0].innerHTML =
-        'Next: <i style="font-size: 14px;font-weight: normal;">' +
+        'Confirm: <i style="font-size: 14px;font-weight: normal;">' +
         dayjsSelected.get("date") +
         " " +
         getMonthName(dayjsSelected.get("month") + 1) +
@@ -266,7 +265,7 @@ function select(btn, day, month, year) {
     btn.classList.add("selected");
     daySelected = btn;
     document.getElementById("nextCalen").children[0].innerHTML =
-        'Next: <i style="font-size: 14px;font-weight: normal">' +
+        'Confirm: <i style="font-size: 14px;font-weight: normal">' +
         dayjsSelected.get("date") +
         " " +
         getMonthName(dayjsSelected.get("month") + 1) +
@@ -288,7 +287,6 @@ function selectTime(btn, hour, minute) {
     if (minute < 10) {
         displayMinute = "0" + minute;
     }
-    console.log(hour + ":" + displayMinute);
     document.getElementById("dateSelected").innerHTML =
         dayjsSelected.get("date") +
         " " +
@@ -324,50 +322,73 @@ function updateTimes(startNumber = 0) {
             if (minute < 10) {
                 displayMinute = "0" + minute;
             }
-            if(hour==0&&minute==0){
+            if (hour == 0 && minute == 0) {
                 timeDiv.insertAdjacentHTML(
                     "beforeend",
-                    '<a class="time_button loading" disabled></a>'
+                    '<b style="grid-column: 2 / span 10;font-size: 22px;">Loading...</b>'
                 );
             } else {
-
-            timeDiv.insertAdjacentHTML(
-                "beforeend",
-                '<a class="time_button" onclick="selectTime(this, ' +
-                    hour +
-                    "," +
-                    displayMinute +
-                    ');" href="javascript:void(0);">' +
-                    hour +
-                    ":" +
-                    displayMinute +
-                    "</a>"
-            );
+                if (times.length == 1) {
+                    timeDiv.insertAdjacentHTML(
+                        "beforeend",
+                        '<a class="time_button" style="grid-column: 4 / span 6;" onclick="selectTime(this, ' +
+                            hour +
+                            "," +
+                            displayMinute +
+                            ');" href="javascript:void(0);">' +
+                            hour +
+                            ":" +
+                            displayMinute +
+                            "</a>"
+                    );
+                } else {
+                    timeDiv.insertAdjacentHTML(
+                        "beforeend",
+                        '<a class="time_button" onclick="selectTime(this, ' +
+                            hour +
+                            "," +
+                            displayMinute +
+                            ');" href="javascript:void(0);">' +
+                            hour +
+                            ":" +
+                            displayMinute +
+                            "</a>"
+                    );
+                }
             }
         }
     }
-    document.getElementById("page_limit").innerHTML = Math.ceil(times.length/6);
+    document.getElementById("page_limit").innerHTML = Math.ceil(
+        times.length / 6
+    );
+    if (times.length == 0) {
+        timeDiv.insertAdjacentHTML(
+            "beforeend",
+            '<b style="grid-column: 2 / span 10;font-size: 22px;">No slots are available for this day.</b>'
+        );
+        document.getElementById("page_limit").innerHTML = 1;
+    }
 }
 
 var time_offset = 1;
-function showMore(){
-    var limit = Math.ceil(times.length/6);
-    if(time_offset<limit){
-    time_offset = time_offset+1;
-    document.getElementById("current_page").innerHTML = time_offset;
-    updateTimes((time_offset-1)*6);
+function showMore() {
+    var limit = Math.ceil(times.length / 6);
+    if (time_offset < limit) {
+        time_offset = time_offset + 1;
+        document.getElementById("current_page").innerHTML = time_offset;
+        updateTimes((time_offset - 1) * 6);
     }
 }
-function showLess(){
-    var limit = Math.ceil(times.length/6);
-    if((time_offset-1)>0){
-    time_offset = time_offset-1;
-    document.getElementById("current_page").innerHTML = time_offset;
-    updateTimes((time_offset-1)*6);
+function showLess() {
+    var limit = Math.ceil(times.length / 6);
+    if (time_offset - 1 > 0) {
+        time_offset = time_offset - 1;
+        document.getElementById("current_page").innerHTML = time_offset;
+        updateTimes((time_offset - 1) * 6);
     }
 }
 
-    function nextCalendar() {
+function nextCalendar() {
     document.getElementById("chooseTime").style.display = "block";
     document.getElementById("finishCalen").style.display = "block";
     document.getElementById("calendar").style.display = "none";
@@ -380,18 +401,62 @@ function showLess(){
         dayjsSelected.get("year");
     document.getElementById("help").innerHTML =
         "Please select a time that suits you.";
-        $.ajax({
-            type: 'GET',
-            url: "/api/meeting/times",
-            data: {date: dayjsSelected.format(),uuid: uuid},
-            beforeSend: function(data){
-                times = [{hour:0,minute:0},{hour:0,minute:0},{hour:0,minute:0},{hour:0,minute:0},{hour:0,minute:0},{hour:0,minute:0}];
-                updateTimes();
-            },
-            success: function(data){
-                console.log(data);
-                times = data;
-                updateTimes();
+    $.ajax({
+        type: "GET",
+        url: "/api/meeting/times",
+        data: { date: dayjsSelected.format(), uuid: uuid },
+        beforeSend: function (data) {
+            times = [{ hour: 0, minute: 0 }];
+            updateTimes();
+        },
+        success: function (data) {
+            times = data;
+            updateTimes();
+        },
+    });
+}
+
+function finishCalendar() {
+    var name = $("#name").val();
+    var email = $("#email").val();
+    var outputDate = dayjsSelected.format("YYYY-MM-DD HH:mm") + ":00";
+    $.ajax({
+        type: "GET",
+        url: "/api/booking/create",
+        contentType: "application/json",
+        data: { uuid: uuid, name: name, email: email, booked_for: outputDate },
+        beforeSend: function (data) {
+            document.getElementById("booknow").disabled = true;
+            document.getElementById("booknow").innerHTML = "Loading...";
+        },
+        success: function (data) {
+            // SUCCESSFUL SCREEN
+            document.getElementById('meetingDiv').style.display = 'none';
+            document.getElementById('helpdiv').style.display = "none";
+            document.getElementById('maindiv').style.display = "none";
+            document.getElementById("chooseTime").style.display = "none";
+            document.getElementById("finishCalen").style.display = "none";
+            document.getElementById('svg-green').style.display = "block";
+            document.getElementById('message').style.display = "block";
+            document.getElementById('messageH1').innerHTML = 'Booking successful!';
+            document.getElementById('messageP').style.display = "block";
+            var displayMinute = dayjsSelected.get("minute");
+            if (minute < 10) {
+                displayMinute = "0" + dayjsSelected.get("minute");
             }
-            });
+            document.getElementById('finalDate').innerHTML = dayjsSelected.get('date')+' '+getMonthName(dayjsSelected.get("month") + 1)+' '+dayjsSelected.get("year")+' at '+dayjsSelected.get("hour")+':'+displayMinute;
+        },
+        error: function (data) {
+            document.getElementById('meetingDiv').style.display = 'none';
+            document.getElementById('helpdiv').style.display = "none";
+            document.getElementById('maindiv').style.display = "none";
+            document.getElementById("chooseTime").style.display = "none";
+            document.getElementById("finishCalen").style.display = "none";
+            document.getElementById('svg-red').style.display = "block";
+            document.getElementById('message').style.display = "block";
+            document.getElementById('messageH1').innerHTML = 'An error has occurred!';
+            document.getElementById('messageP').style.display = "block";
+            document.getElementById('messageP').innerHTML = data;
+        },
+    });
 }
