@@ -20,6 +20,7 @@ class Bookings extends Migration
             $table->foreign('meeting_id')->references('id')->on('meetings');
             $table->string('fullname'); // nom du
             $table->string('email');
+            $table->string('ip');
             $table->timestamp('booked_for');
             $table->timestamps();
         });
